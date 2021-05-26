@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        font-family: sans-serif;
+        overflow: hidden;
+        margin: 0;
+      }
+      .page {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+background-image: url("images/1614782.jpg");
+      }
+      .form {
+        background-color: whitesmoke;
+        width: 600px;
+        height: 320px;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+      }
+      .form-header {
+        font-size: 2em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #0984e3;
+      }
+      .form-control {
+        width: 80%;
+
+        margin: 5px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .form-input {
+        width: 60%;
+        padding: 7px;
+        font-size: 18px;
+      }
+      .form-label {
+        margin: auto;
+        font-size: 20px;
+      }
+      .form-button {
+        font-size: 20px;
+        width: 150px;
+        text-transform: uppercase;
+        background-color: #0984e3;
+        color: aliceblue;
+        border: 1px solid;
+
+        padding: 7px 10px;
+        border-radius: 4px;
+      }
+    </style>
+    <title>Non Secure Login</title>
+  </head>
+  <body>
+    <section class="page">
+      <div class="text-center">
+        <form
+          name="frmLogin"
+          method="POST"
+          action="http://localhost:8080/Web1/LoginServlet"
+        >
+          <div class="form">
+            <div class="form-header">Non Secure Form</div>
+            <div class="form-control">
+              <label class="form-label">Username</label>
+              <input class="form-input" type="text" name="username" placeholder="Username"/>
+            </div>
+            <div class="form-control">
+              <label class="form-label">Password</label>
+              <input class="form-input"  name="password" placeholder="Password"/>
+            </div>
+            <div class="form-control">
+              <button class="form-button" type="submit">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
