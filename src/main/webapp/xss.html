@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"
+    />
+    <title>Page With XSS</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <form>
+      <div class="container">
+        <h1>Todolist with XSS</h1>
+        <button type="submit" class="btn btn-primary" id="add-data">
+          Add data
+        </button>
+
+        <div class="contents">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Todo</th>
+              </tr>
+            </thead>
+            <tbody id="t-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      var DATA = [
+        {
+          id: '1',
+          name: 'On Coding',
+        },
+        {
+          id: '2',
+          name: 'Go Sleep',
+        },
+      ]
+
+      window.onload = function () {
+        renderData(DATA)
+      }
+
+      function renderData(list) {
+        let str = ''
+        list.forEach((obj) => {
+          // const id = obj.id.escape()
+          // const name = obj.name.escape()
+          const id = obj.id
+          const name = obj.name
+          str = str + '<tr><td>' + id + '</td><td>' + name
+        })
+
+        document.getElementById('t-body').innerHTML = str
+      }
+
+      String.prototype.escape = function () {
+        const tagsToReplace = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+        }
+        return this.replace(/[&<>]/g, function (tag) {
+          return tagsToReplace[tag] || tag
+        })
+      }
+      const btnAddData = document.getElementById('add-data')
+      let title
+      btnAddData.addEventListener('click', (e) => {
+        e.preventDefault()
+        title = window.prompt('Add a todo !')
+        if (title) {
+          DATA.push({
+            id: `${+DATA.length + 1}`,
+            name: title,
+          })
+          renderData(DATA)
+        }
+      })
+      // Copy đoạn dữ dữ liệu dưới đây
+      // <input type="text" id="search-text" name="query" value="" onfocus="alert('XSS')" autofocus="" />
+    </script>
+  </body>
+</html>

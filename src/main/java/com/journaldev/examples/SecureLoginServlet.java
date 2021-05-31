@@ -29,7 +29,7 @@ public class SecureLoginServlet extends HttpServlet {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/user", "trongdev", "xuantrong");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/user", "root", "2000");
             stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
